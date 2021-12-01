@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,600,700,800,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family:'Courier New', Courier, monospace;
+  color:rgb(254, 11, 11)
+}
+.a{
+  color:red;
+   
+}
+
+.h4{
+  color:#fe430a;
+}
+.li{
+  color:red;
+}
+body{
+  height: 100vh;
+}
+.wrapper {
+  height: 100vh;
+}
+.myColor {
+}
+.myShadow {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+.myBtn {
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+}
+.myBtn:hover {
+}
+.myHr {
+    height: 2px;
+    border-radius: 100px;
+  }
+  .myLinkBtn {
+    border-radius: 100px;
+    width: 50%;
+    border: 2px solid #fff;
+  }
+  @media (max-width: 720px) {
+    .wrapper {
+      margin: 10px;
+    }
+  }
