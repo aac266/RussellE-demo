@@ -15,6 +15,7 @@
 	  // Data Source Network
 	  private $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . '';
 
+
 	  // Connection Variable
 	  public $conn = null;
 

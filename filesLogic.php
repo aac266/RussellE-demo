@@ -13,7 +13,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $filename = $_FILES['myfile']['name'];
 
     // destination of the file on the server
-    $destination = 'upload/' . $filename;
+    $destination = 'upload' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);

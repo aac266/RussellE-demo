@@ -50,10 +50,10 @@
           <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'notification.php') ? 'active' : ''; ?>" href="<?= $base_url ?>/notification.php"><i class="fas fa-bell"></i>&nbsp;Notification&nbsp;<span id="showNotificationCheck"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'documents.php') ? 'active' : ''; ?>" href="<?= $base_url ?>/documents.php"><i class="fas fa-file-upload"></i>&nbsp;Documents&nbsp;</a>
+          <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'documents.php') ? 'active' : ''; ?>" href="<?= $base_url ?>/documents.php"><i class="fas fa-file-upload"></i>&nbsp;Upload&nbsp;</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == '/upload') ? 'active' : ''; ?>" href="<?= $base_url ?>/upload/"><i class="fas fa-file-word"></i>&nbsp;Download&nbsp;</a>
+          <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'downloads.php') ? 'active' : ''; ?>" href="<?= $base_url ?>/downloads.php"><i class="fas fa-file-word"></i>&nbsp;Download&nbsp;</a>
         </li>
         
         <li class="nav-item dropdown">

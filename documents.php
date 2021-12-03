@@ -1,12 +1,12 @@
 <?php  
 	include_once 'assets/php/header.php';
-
+    include_once 'filesLogic.php';
 ?>
 <body>
 <style>
 form{
 
-width:30%;
+width:auto;
 
 margin:100px;
 
@@ -18,13 +18,13 @@ border:1px solid #555;
 
 input{
 
-width:100%;
+width:auto;
 
 border:1px solid #f1e1e1;
 
 display:block;
 
-padding:5px 10px;
+padding:15px 15px;
 
 align-content: center;
 
@@ -40,13 +40,15 @@ border-radius:10px;
 
 }
 table {
-  width: 60%;
+  width: auto;
   border-collapse: collapse;
   margin: 100px auto;
   align-content:center;
 }
 th,
 td {
+    padding:50%;
+    width:auto;
   height: 50px;
   vertical-align: center;
   border: 1px solid black;
@@ -54,8 +56,8 @@ td {
 </style>
 
 <h1>Upload Class Documents Below</h1>
-<h3>View/Download Documents here<h2> <button>          
-  <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == '/upload') ? 'active' : ''; ?>" href="<?= $base_url ?>/upload/"><i class="fas fa-file-word"></i>&nbsp;Download&nbsp;</a>
+<h3>Click Button to Download Documents<h2> <button>          
+  <a class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'downloads.php') ? 'active' : ''; ?>" href="<?= $base_url ?>/downloads.php"><i class="fas fa-file-word"></i>&nbsp;Download&nbsp;</a>
 </button>
 <!DOCTYPE html>
 <html>
@@ -65,7 +67,8 @@ td {
 <body>
  
 <form method="post" enctype="multipart/form-data">
-
+    <label>Title</label>
+    <input type="text" name="title">
     <label>File Upload</label>
     <input type="File" name="file">
     <input type="submit" name="submit">
@@ -87,7 +90,9 @@ $conn = mysqli_connect($localhost,$dbusername,$dbpassword,$dbname);
  
 if (isset($_POST["submit"]))
  {
-
+     #retrieve file title
+        $title = $_POST["title"];
+     
     #file name with a random number so that similar dont get replaced
      $pname = rand(1000,10000)."-".$_FILES["file"]["name"];
  
@@ -100,7 +105,8 @@ $uploads_dir = 'upload';
     move_uploaded_file($tname, $uploads_dir.'/'.$pname);
  
     #sql query to insert into database
-    $sql = "INSERT into files(image) VALUES('$pname')";
+    $sql = "INSERT into upload (`id`, `name`, `size`, `download`, `action`) VALUES (NULL, '', '', '', '')
+    ";
  
     if(mysqli_query($conn,$sql)){
  
@@ -113,40 +119,3 @@ $uploads_dir = 'upload';
  
  
 ?>
-
-
-<?php
-// connect to the database
-$conn = mysqli_connect('localhost', 'root','', 'user_system');
-
-// Uploads files
-if (isset($_POST['save'])) { // if save button on the form is clicked
-    // name of the uploaded file
-    $filename = $_FILES['myfile']['name'];
-
-    // destination of the file on the server
-    $destination = 'upload/' . $filename;
-
-    // get the file extension
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-
-    // the physical file on a temporary uploads directory on the server
-    $file = $_FILES['myfile']['tmp_name'];
-    $size = $_FILES['myfile']['size'];
-
-    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
-        echo "You file extension must be .zip, .pdf or .docx";
-    } elseif ($_FILES['myfile']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
-        echo "File too large!";
-    } else {
-        // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO upload (name, size, downloads) VALUES ('$filename', $size, 0)";
-            if (mysqli_query($conn, $sql)) {
-                echo "File uploaded successfully";
-            }
-        } else {
-            echo "Failed to upload file.";
-        }
-    }
-}
